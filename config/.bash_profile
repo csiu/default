@@ -8,8 +8,14 @@ alias em="emacs -nw"
 alias rstudio="open -a Rstudio"
 
 ## cleanup cruft files
-alias clean="find . -maxdepth 1 \( -name '*~' -o -name '.DS_Store' \) -exec rm -v '{}' \;"
-alias cleandryrun="find . -maxdepth 1 \( -name '*~' -o -name '.DS_Store' \) -exec echo rm -v '{}' \;"
+function clean {
+  if [[ $1 == "rm" ]]
+  then
+    find . -maxdepth 1 \( -name '*~' -o -name '.DS_Store' \) -exec rm -v '{}' \;
+  else
+    find . -maxdepth 1 \( -name '*~' -o -name '.DS_Store' \) -exec echo rm -v '{}' \;
+  fi
+}
 
 ## tree function for systems without the 'tree' command
 function tree {
