@@ -12,9 +12,12 @@ alias clean="find . -maxdepth 1 \( -name '*~' -o -name '.DS_Store' \) -exec rm -
 alias cleandryrun="find . -maxdepth 1 \( -name '*~' -o -name '.DS_Store' \) -exec echo rm -v '{}' \;"
 
 ## tree function for systems without the 'tree' command
-alias tree="find . |\
-            sed 's|/$||' |\
-            awk '{for (i=1; i<NF; i++) { printf(\"%4s\", \"|\") } print \"-- \"\$NF}' FS='/'"
+function tree {
+  [[ -z $1 ]] && search_dir=. || search_dir=$1
+  find $search_dir |
+    sed 's|/$||' |
+    awk '{for (i=1; i<NF; i++) { printf("%4s", "|") } print "-- "$NF}' FS='/'
+}
 
 ## Print timestamp
 function now {
