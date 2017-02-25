@@ -18,11 +18,14 @@ function clean {
 }
 
 ## tree function for systems without the 'tree' command
+function drawtree {
+  cat | awk '{for (i=1; i<NF; i++) { printf("%4s", "|") } print "-- "$NF}' FS='/'
+}
 function tree {
   [[ -z $1 ]] && search_dir=. || search_dir=$1
   find $search_dir |
     sed 's|/$||' |
-    awk '{for (i=1; i<NF; i++) { printf("%4s", "|") } print "-- "$NF}' FS='/'
+    drawtree
 }
 
 ## Print timestamp
