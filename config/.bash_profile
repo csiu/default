@@ -16,6 +16,16 @@ alias tree="find . |\
             sed 's|/$||' |\
             awk '{for (i=1; i<NF; i++) { printf(\"%4s\", \"|\") } print \"-- \"\$NF}' FS='/'"
 
+## Print timestamp
+function now {
+  if [[ $1 == "full" ]]
+  then
+    date +"%F.%H-%M-%S"
+  else
+    date +"%F"
+  fi
+}
+
 ## make bash autocomplete with up arrow
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
