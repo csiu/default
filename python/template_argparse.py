@@ -21,6 +21,10 @@ if __name__ == '__main__':
         required=True,
         help='path to input file')
 
+    ## Setting an argument grouping
+    # parser_group1 = parser.add_argument_group('Group 1 arguments')
+    # parser_group1.add_argument(...)
+
     ## get at the arguments
     args = parser.parse_args()
 
